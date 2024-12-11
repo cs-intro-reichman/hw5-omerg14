@@ -58,10 +58,11 @@ public class MyString {
      */
     public static String spacedString(String str) {
         String newStr = "";
-        char c;
-        for (int i = 0; i < str.length(); i++) {
-            c = str.charAt(i);
-            newStr += c + " ";
+        for (int i = 0; i < str.length() ; i++) {
+            newStr += str.charAt(i);
+            if (i < (str.length() - 1)) {
+                newStr += " ";
+            }
         }
         return newStr;
     }
