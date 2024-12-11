@@ -42,9 +42,14 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-        if (str2.indexOf(str1) != -1) {
-            return true;
-        }
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = 0; j < str2.length(); j++) {
+                if (str1.charAt(i) == str2.charAt(j)) {
+                    return true;
+
+                }
+            }
+        }            
         return false;
     }
 

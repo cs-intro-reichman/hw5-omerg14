@@ -111,34 +111,32 @@
 			 System.out.println("Current Hand: " + MyString.spacedString(hand));
 			 System.out.println("Enter a word, or '.' to finish playing this hand:");
 			 String input = in.readString();
-			 if (input == ".") {
-				 System.out.println("the game is end");
-				 break;
+			 if(input.equals(".")) {
+				break;
 			 }
-			 while (MyString.subsetOf(input, hand) || input.length() < 2) {
-				System.out.println("enter a valid word");
-				System.out.println("Current Hand: " + MyString.spacedString(hand));
-				System.out.println("Enter a word, or '.' to finish playing this hand:");
-				input = in.readString();
-				if(input.equals(".")){
+			 while(!MyString.subsetOf(input, hand) || input.length() < 2) {
+				 System.out.println("Invalid word. Try again.");
+				 System.out.println("Current Hand: " + MyString.spacedString(hand));
+				 System.out.println("Enter a word, or '.' to finish playing this hand:");
+				 input = in.readString();
+				 if (input.equals(".")) {
 					break;
-				} 
-
-				if (isWordInDictionary(input) == true) {
-					score += wordScore(input);
-					System.out.println(input + " earned " + wordScore(input) + "points. score " + score + " points") ;
-					hand = MyString.remove(input, hand);
-				} else {
-					System.out.println("not found in dictionary");
-				}
+				 } 
 			 }
-			 // Reads the next "token" from the keyboard. A token is defined as a string of 
-			 // non-whitespace characters. Whitespace is either space characters, or  
-			 // end-of-line characters.
-		
+			 if (input.equals(".")) {
+				break;
+			 } 
+			 if (isWordInDictionary(input)) {
+				 score += wordScore(input);
+				 System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points" + "\n");
+				 hand = MyString.remove(hand, input);
+			 } else {
+				System.out.println("No such word in the dictionary. Try again."); 
+			 }
+			 if(hand.length() == 0){
+				break;
+			 } 
 			 
-			 //// Replace the following break statement with code
-			 //// that completes the hand playing loop
 		 }
 		 if (hand.length() == 0) {
 			 System.out.println("Ran out of letters. Total score: " + score + " points");
