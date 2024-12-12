@@ -42,15 +42,19 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
+        String newStr = str2;
         for (int i = 0; i < str1.length(); i++) {
-            for (int j = 0; j < str2.length(); j++) {
-                if (str1.charAt(i) == str2.charAt(j)) {
-                    return true;
-
+            if (countChar(newStr,str1.charAt(i)) == 0) {
+                return false;
+            } else {
+                int index = newStr.indexOf(str1.charAt(i));
+                if (index == -1) {
+                    return false;
                 }
+                newStr = newStr.substring(0, index) + newStr.substring(index + 1);
             }
-        }            
-        return false;
+        }
+            return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
